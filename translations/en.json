@@ -1,0 +1,46 @@
+{
+  "lang": {
+    "title": "Select the Language",
+    "subtitle":"please select which language you want.\n you can change later on profile.",
+    "button":"Continue"
+  },
+  "signIn": {
+    "title": "Sign In",
+    "placeholder":"Phone Number",
+    "button":"Login",
+    "subtitle":"Don't Have an Account?",    
+    "subtitle2":" Create an Account"
+  },
+  "signUp": {
+    "title": "Sign Up",
+    "placeholder1":"First Name",
+    "placeholder2":"Second Name",
+    "placeholder3":"Email",
+    "button":"Next",
+    "subtitle":"Already Have an Account?",    
+    "subtitle2":" Sign In",
+    "check":"I agree with",
+    "term":" Terms",
+    "and":" and",
+    "condition":" Conditions",
+    "rest":"."
+  },
+  "reg1": {
+    "title": "Vehical Registration",
+    "question":"Do you own vehicle you're going to register?",
+    "answer1":"Yes",
+    "answer1subtitle":"Select this if the vehicle you’re about to register is owned by you.", 
+    "answer2":"No",
+    "answer2subtitle":"Select this if the vehicle you’re about to register is owned by someone other than you.",
+    "button":"Next"
+  },
+  "phone": {
+    "title1": "Phone Number",
+    "title2":"Verification Code",
+    "subtitle":"We sent verifiation code to your mobile number.",
+    "subtitle2":"Request again get via SMS",
+    "change":"Change Phone Number", 
+    "button1":"Send Code",
+    "button2":"Submit"
+  }
+}
