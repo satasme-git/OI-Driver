@@ -13,6 +13,7 @@ export const OIProvider = ({ children }) => {
 
   const [state, setState] = useState("Home");
   const [language, setLanguage] = useState("en");
+  const [id, setId] = useState('1');
 
   i18n.locale = language;
   i18n.fallbacks = true;
@@ -30,8 +31,21 @@ export const OIProvider = ({ children }) => {
     }
   }
 
+  const getId = async () => {
+    try {
+      const value = await AsyncStorage.getItem('id')
+      if(value !== null) {
+        setId(value)
+        // value previously stored
+      }
+    } catch(e) {
+      // error reading value
+    }
+  }
+
   useEffect(() => {
     getLanguage()
+    getId()
   },[]);
 
   return (
@@ -40,7 +54,9 @@ export const OIProvider = ({ children }) => {
         state,
         setState,
         language,
-        setLanguage
+        setLanguage,
+        id,
+        setId
       }}
     >
       {children}

@@ -54,7 +54,7 @@ export default function VehicalReg1() {
         </View>
         
 
-        <TouchableHighlight style={styles.button}>
+        <TouchableHighlight style={styles.button} onPress={()=>navigation.navigate('VehicleRgistration')}>
             <View style={styles.buttonView}>
                 <Text style={styles.buttonText}>{i18n.t('reg1.button')}</Text>
             </View>

@@ -20,12 +20,14 @@ export default function PhoneNumber() {
     const [key, setKey] = useState(0);
     const [number, setNumber] = useState();
     const [click, setClick] = useState(false);
-    const [country, setCountry] = useState('US');
+    const [country, setCountry] = useState('LK');
+    const [countryCode, setCountryCode] = useState('+94');
 
     
     const [code1, setCode1] = useState();
     const [code2, setCode2] = useState(0);
-    const [code3, setCode3] = useState();
+
+    const [code, setCode] = useState(true);
     const [code4, setCode4] = useState();
     
     const [otp, setOtp] = useState();
@@ -35,18 +37,35 @@ export default function PhoneNumber() {
     const navigation = useNavigation();
 
     const sendCode = ()=>{
+        setCode1()
+        setCode(true)
         var val = Math.floor(1000 + Math.random() * 9000);
-        console.log(val);
+        console.log(countryCode+number);
         setOtp(val)
+
+        fetch('https://youandmenest.com/tr_reactnative/send_sms_by_otp.php', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                phone_number: 0+number,
+                otp_code: val
+            })
+            });
+
+
     }
     const goToNext = ()=>{
         otp==code1?
-        navigation.navigate('SignIn'):
-        null
+        navigation.navigate('SignIn')
+        :
+        setCode(false)
     }
 
     useEffect(() => {
-        sendCode()
+        // sendCode()
       },[]);
 
   return (
@@ -64,7 +83,7 @@ export default function PhoneNumber() {
             <Animatable.View key={key} animation={sent?'fadeInRight':'fadeOutRight'}>
                 <Circle icon={<Image source={require('../images/verify.png')} style={{width:35,height:40,tintColor:'#fff'}} />} />
                 <Animatable.Text animation={'fadeInRight'} style={styles.title}>{i18n.t('phone.title2')}</Animatable.Text>
-                <Animatable.Text animation={'fadeInRight'} style={styles.subtitle}>{i18n.t('phone.subtitle')} {<Text onPress={()=>{setSent(false);setKey(key+1)}} style={{color:'#4987F7'}}>{i18n.t('phone.subtitle2')}</Text>}  </Animatable.Text>
+                <Animatable.Text animation={'fadeInRight'} style={styles.subtitle}>{i18n.t('phone.subtitle')} {<Text onPress={()=>{setCode(true);sendCode();setKey(key+1)}} style={{color:'#4987F7'}}>{i18n.t('phone.subtitle2')}</Text>}  </Animatable.Text>
                     {/* <View style={{flexDirection:'row',justifyContent:'center',paddingVertical:20}}>
                         <TextInput
                             style={styles.codeinput}
@@ -100,9 +119,9 @@ export default function PhoneNumber() {
                         style={{width: '60%', height: 50}}
                         pinCount={4}
                         code={code1} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
-                        onCodeChanged = {code => { {setCode1(code),setCode2(code)}}}
-                        autoFocusOnLoad
-                        codeInputFieldStyle={styles.underlineStyleBase}
+                        onCodeChanged = {code => { {setCode1(code),setCode2(code),setCode(true)}}}
+                        autoFocusOnLoad ={false}
+                        codeInputFieldStyle={code?styles.underlineStyleBase:styles.underlineStyleBase2}
                         codeInputHighlightStyle={styles.underlineStyleHighLighted}
                         onCodeFilled = {(code => {
                             console.log(`Code is ${code}, you are good to go!`)
@@ -110,7 +129,14 @@ export default function PhoneNumber() {
                         })}
                     />   
                     </View>
-                    <Animatable.Text animation={'fadeInRight'} onPress={()=>{setSent(false);setKey(key+1)}} style={[styles.subtitle,{color:'#4987F7'}]}>{i18n.t('phone.change')}  </Animatable.Text>
+                    {
+                        code?
+                        <Animatable.Text animation={'fadeInRight'} style={[styles.subtitle,{color:'red',fontSize:13}]}></Animatable.Text>
+                        :
+                        <Animatable.Text animation={'fadeInRight'} style={[styles.subtitle,{color:'red',fontSize:13}]}>*{i18n.t('phone.error')}  </Animatable.Text>
+                    }
+                    
+                    <Animatable.Text animation={'fadeInRight'} onPress={()=>{setSent(false);setNumber();setKey(key+1)}} style={[styles.subtitle,{color:'#4987F7'}]}>{i18n.t('phone.change')}  </Animatable.Text>
 
                         {
                             code2.toString().length>3?
@@ -158,6 +184,7 @@ export default function PhoneNumber() {
                             </TouchableOpacity>
                             
                         }
+
                         <View style={{borderColor:'gray',borderRightWidth:1,height:30,width:10}} />
 
                         {/* <Picker data={Languages} avatar={true} click={click} onPress={()=>{setCountry(lang.title);setClick(false)}} state={country} /> */}
@@ -165,7 +192,7 @@ export default function PhoneNumber() {
                         <Animatable.View duration={100} animation={click?'fadeIn':'fadeOut'} style={{backgroundColor:'white',padding:10,position:'absolute',top:40,zIndex:2,elevation:20}}>
                             {
                                 Languages.map((lang)=>
-                                    <TouchableOpacity key={lang.id} onPress={()=>{setCountry(lang.title);setClick(false)}} style={{margin:5}}>
+                                    <TouchableOpacity key={lang.id} onPress={()=>{setCountry(lang.title);setClick(false);setCountryCode(lang.code)}} style={{margin:5}}>
                                         <View style={{flexDirection:'row',alignItems:'center'}}>
                                             <Image source={country==lang.title?lang.image:lang.dimage} style={{width:22,height:22,borderRadius:25}}  />
                                             <Text style={{marginLeft:10,color:country==lang.title?'black':'#C4C4C4'}}>{lang.title}</Text>
@@ -174,20 +201,20 @@ export default function PhoneNumber() {
                                 )
                             }
                         </Animatable.View>
-                        
+                      
                     </View>
-                    
+                    <Text style={styles.countryCode}>{countryCode}</Text>  
                     <TextInput
                         style={styles.input}
                         onChangeText={(text)=>setNumber(text)}
                         value={number}
-                        placeholder="xx xxx xxxx"
+                        placeholder="00 000 0000"
                         keyboardType="numeric"
                        
                     />
                 </View>
 
-                <TouchableHighlight style={[styles.button,{marginTop:30}]} onPress={()=>{setSent(true);setKey(0)}}>
+                <TouchableHighlight style={[styles.button,{marginTop:30}]} onPress={()=>{sendCode();setSent(true);setKey(0)}}>
                     <View style={styles.buttonView}>
                         <Text style={styles.buttonText}>{i18n.t('phone.button1')}</Text>
                         <FontAwesome5 name='arrow-right' size={12} color={'white'} style={{paddingLeft:10}}/>

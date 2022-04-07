@@ -7,19 +7,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
   },
   title: {
     color: "#20232a",
     textAlign: "center",
     fontSize: 27,
     fontFamily:'Poppins-Medium',
+    // width:windowWidth-100,
+  },
+  point: {
+    color: "#20232a",
+    textAlign: "center",
+    fontSize: 15,
+    fontFamily:'Poppins-Medium',
+    marginLeft:10
   },
   question: {
     color: "#20232a",
     textAlign: "left",
     fontSize: 17,
     fontFamily:'Poppins-Medium',
+  },
+  center: {
+    width:windowWidth-30,
+    marginVertical:20,
+    alignItems:'center'
   },
   subtitle: {
     color: "#686464",
@@ -85,7 +98,7 @@ const styles = StyleSheet.create({
     borderRadius:100,
     alignItems:'center',
     justifyContent:'center',
-    marginVertical:40
+    // marginVertical:50
   },
   languages:{
     marginVertical:20,
@@ -128,7 +141,7 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     paddingLeft:10,
-    fontSize:17
+    fontSize:17,
   },
   codeinput: {
     height: 40,
@@ -159,7 +172,8 @@ const styles = StyleSheet.create({
   row:{
     flexDirection:'row',
     alignItems:'center',
-    justifyContent:'space-between'  
+    justifyContent:'space-between',
+    // width:windowWidth-50
   },
   terms:{
     fontFamily:'Poppins-Regular',
@@ -175,9 +189,48 @@ const styles = StyleSheet.create({
     fontSize:19,
     color:'black'
   },
+  underlineStyleBase2: {
+    width: 40,
+    height: 40,
+    borderWidth: 1,
+    marginHorizontal:5,
+    borderRadius:5,
+    fontSize:19,
+    color:'black',
+    borderColor:'red'
+  },
 
   underlineStyleHighLighted: {
     borderColor: "#ED9939",
+  },
+  underlineStyleHighLighted2: {
+    borderColor: "red",
+  },
+  countryCode:{
+    
+    fontFamily:'Poppins-Regular',
+    fontSize:16,
+    paddingLeft:5
+  },
+  panelView:{
+    alignItems:'center',
+    padding:15
+  },
+  photoButton:{
+    width:windowWidth/3,
+    height:windowHeight/4,
+    borderWidth:2,
+    marginHorizontal:2.5,
+    marginTop:10,
+    justifyContent:'center',
+    borderRadius:5,
+    borderColor:"#ED9939"
+  },
+  linearGradiantFlex:{
+    padding:15,
+    height:windowHeight,
+    alignItems:'center',
+    justifyContent:'center'
   },
 });
 

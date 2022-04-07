@@ -6,12 +6,19 @@ import SignUp from '../screens/SignUp';
 import PhoneNumber from '../screens/PhoneNumber';
 import Home from '../screens/Home';
 import VehicalReg1 from '../screens/VehicalReg1';
+import VehicleRgistration from '../screens/VehicleRegistration'
+import VehicleChoose from '../screens/VehicleChoose'
+import DrivingLicense from '../screens/DrivingLicense';
+import VehicleDetails from '../screens/VehicleDetails';
+import UploadDocuments from '../screens/UploadDocuments';
+import UploadVehicleDocuments from '../screens/uploadVehicleDocuments';
+import Complete from '../screens/Complete';
 
 const Stack = createStackNavigator();
 
 function MyStack() {
   return (
-    <Stack.Navigator initialRouteName='LanguageSelect' 
+    <Stack.Navigator initialRouteName='SignIn' 
     screenOptions={({ route, navigation }) => ({
       headerShown: false,
       gestureEnabled: true,
@@ -23,6 +30,13 @@ function MyStack() {
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="VehicalReg1" component={VehicalReg1} />
+      <Stack.Screen name="VehicleRgistration" component={VehicleRgistration} />
+      <Stack.Screen name="VehicleChoose" component={VehicleChoose} />
+      <Stack.Screen name="DrivingLicense" component={DrivingLicense} />
+      <Stack.Screen name="VehicleDetails" component={VehicleDetails} />
+      <Stack.Screen name="UploadDocuments" component={UploadDocuments} />
+      <Stack.Screen name="UploadVehicleDocuments" component={UploadVehicleDocuments} />
+      <Stack.Screen name="Complete" component={Complete} />
     </Stack.Navigator>
   );
 }

@@ -8,15 +8,15 @@ import * as Animatable from 'react-native-animatable';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const Circle = ({
+const WhiteCircle = ({
   icon,
 }) => {
 
 
   return (
-    <Animatable.View animation={'fadeIn'} style={[styles.circleOut,{marginVertical:15}]}>
-        <Animatable.View delay={300} animation={'bounceIn'}  style={styles.circle}>
-        <LinearGradient start={{x: 0.5, y: 0}} end={{x: 0.7, y: 1}} colors={['#ED9939', '#FFCE31']} style={styles.circle}>
+    <Animatable.View animation={'fadeIn'} style={[styles.circleOut,{backgroundColor:'rgba(255,255,255,0.17)'}]}>
+        <Animatable.View delay={300} animation={'bounceIn'}  style={[styles.circle,{backgroundColor:'rgba(255,255,255,0.17)'}]}>
+        <LinearGradient start={{x: 0.5, y: 0}} end={{x: 0.7, y: 1}} colors={['#fff', '#fff']} style={[styles.circle,{backgroundColor:'#fff'}]}>
             <Animatable.View delay={600} animation={'zoomIn'}>
                 {icon} 
             </Animatable.View> 
@@ -26,4 +26,4 @@ const Circle = ({
 
   );
 };
-export default Circle;
+export default WhiteCircle;

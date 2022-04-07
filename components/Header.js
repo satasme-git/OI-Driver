@@ -39,7 +39,7 @@ const Header = ({
             :null
         }
         
-        
+        <Text style={styles.title}>{title}</Text>
     </View>
   );
 };

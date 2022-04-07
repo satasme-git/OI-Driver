@@ -12,8 +12,13 @@ import SignUp from './screens/SignUp';
 import Sign from './stacks/Sign';
 import { NavigationContainer } from '@react-navigation/native';
 import { GestureHandlerRootView } from "react-native-gesture-handler"
+import SplashScreen from 'react-native-splash-screen'
 
 export default function App() {
+  
+  useEffect(() => {
+    SplashScreen.hide();
+  },[]);
 
   return (
     <OIProvider>
